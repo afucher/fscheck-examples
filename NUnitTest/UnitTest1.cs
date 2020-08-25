@@ -8,45 +8,56 @@ namespace NUnitTest
     {
 
         [Test]
-        public void SomaDoisNumeros()
+        public void SomaDoisnúmeros()
         {
             Assert.AreEqual(5, Soma(2, 3));
         }
 
         [TestCase(5, 2, 3)]
         [TestCase(5, 8, -3)]
-        public void SomaAlgunsDoisNumeros(int esperado, int numero1, int numero2)
+        public void SomaAlgunsDoisnúmeros(int esperado, int número1, int número2)
         {
-            Assert.AreEqual(esperado, Soma(numero1, numero2));
+            Assert.AreEqual(esperado, Soma(número1, número2));
+        }
+
+        [Test]
+        public void SomaDoisnúmerosNãoImportaAOrdem()
+        {
+            var resultado1 = Soma(2, 8);
+            var resultado2 = Soma(8, 2);
+            Assert.AreEqual(resultado1,resultado2);
+        }
+        
+        
+        
+        
+        [FsCheck.NUnit.Property]
+        public Property SomaVariosDoisnúmeros(int número1, int número2)
+        {
+            var resultado = Soma(número1, número2);
+            return ((número1 + número2) == resultado).ToProperty();
         }
 
         [FsCheck.NUnit.Property]
-        public Property SomaVariosDoisNumeros(int numero1, int numero2)
+        public Property SomaDoisnúmerosNãoDependeDaOrdemDoParâmetro(int número1, int número2)
         {
-            var resultado = Soma(numero1, numero2);
-            return ((numero1 + numero2) == resultado).ToProperty();
-        }
-
-        [FsCheck.NUnit.Property]
-        public Property SomaDoisNumerosNãoDependeDaOrdemDoParâmetro(int numero1, int numero2)
-        {
-            var resultado1 = Soma(numero1, numero2);
-            var resultado2 = Soma(numero2, numero1);
+            var resultado1 = Soma(número1, número2);
+            var resultado2 = Soma(número2, número1);
             return (resultado1 == resultado2).ToProperty();
         }
 
         [FsCheck.NUnit.Property]
-        public Property SomaDoisNumerosIguaisDeveSerIgualAoDobroDoNumero(int numero)
+        public Property SomaDoisnúmerosIguaisDeveSerIgualAoDobroDonúmero(int número)
         {
-            var resultado = Soma(numero, numero);
-            return (resultado == (numero * 2)).ToProperty();
+            var resultado = Soma(número, número);
+            return (resultado == (número * 2)).ToProperty();
         }
 
         [FsCheck.NUnit.Property]
-        public Property SomaDoisNumerosQuandoUmÉZeroDeveRetornarOValorPassado(int numero)
+        public Property SomaDoisnúmerosQuandoUmÉZeroDeveRetornarOValorPassado(int número)
         {
-            var resultado = Soma(numero, 0);
-            return (resultado == numero).ToProperty();
+            var resultado = Soma(número, 0);
+            return (resultado == número).ToProperty();
         }
     }
 }
