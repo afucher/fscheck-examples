@@ -13,8 +13,6 @@ namespace NUnitTest
             Assert.AreEqual(5, Soma(2, 3));
         }
 
-
-
         [TestCase(5, 2, 3)]
         [TestCase(5, 8, -3)]
         public void SomaAlgunsDoisNumeros(int esperado, int numero1, int numero2)
@@ -38,17 +36,17 @@ namespace NUnitTest
         }
 
         [FsCheck.NUnit.Property]
-        public Property SomaDoisNumerosIguaisDeveSerIgualAoDobroDoNumero(int numero1)
+        public Property SomaDoisNumerosIguaisDeveSerIgualAoDobroDoNumero(int numero)
         {
-            var resultado1 = Soma(numero1, numero1);
-            return (resultado1 == (numero1 * 2)).ToProperty();
+            var resultado = Soma(numero, numero);
+            return (resultado == (numero * 2)).ToProperty();
         }
 
         [FsCheck.NUnit.Property]
-        public Property SomaDoisNumerosQuandoUmÉZeroDeveRetornarOValorPassado(int numero1)
+        public Property SomaDoisNumerosQuandoUmÉZeroDeveRetornarOValorPassado(int numero)
         {
-            var resultado1 = Soma(numero1, 0);
-            return (resultado1 == numero1).ToProperty();
+            var resultado = Soma(numero, 0);
+            return (resultado == numero).ToProperty();
         }
     }
 }
