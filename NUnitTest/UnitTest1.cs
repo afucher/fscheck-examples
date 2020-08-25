@@ -30,7 +30,7 @@ namespace NUnitTest
         }
 
         [FsCheck.NUnit.Property]
-        public Property SomaDoisNumerosN„oDependeDaOrdemDoPar‚metro(int numero1, int numero2)
+        public Property SomaDoisNumerosN√£oDependeDaOrdemDoPar√¢metro(int numero1, int numero2)
         {
             var resultado1 = Soma(numero1, numero2);
             var resultado2 = Soma(numero2, numero1);
@@ -45,7 +45,7 @@ namespace NUnitTest
         }
 
         [FsCheck.NUnit.Property]
-        public Property SomaDoisNumerosQuandoUm…ZeroDeveRetornarOValorPassado(int numero1)
+        public Property SomaDoisNumerosQuandoUm√âZeroDeveRetornarOValorPassado(int numero1)
         {
             var resultado1 = Soma(numero1, 0);
             return (resultado1 == numero1).ToProperty();
